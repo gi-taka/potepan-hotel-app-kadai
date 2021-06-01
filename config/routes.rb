@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get 'reservations/index'
-  get 'rooms/index'
-  get 'users/index'
+  get '/', to: 'rooms#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :users
+  resources :rooms
+  resources :reservations
 end
