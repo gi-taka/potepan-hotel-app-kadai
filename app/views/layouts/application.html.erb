@@ -11,6 +11,28 @@
   </head>
 
   <body>
+    <header class="header">
+      <div class="header-inner">
+        <div class="header-left-nav">
+          <a href="/">
+            <img src="/assets/logo.png">
+          </a>
+          <div class="header-search d-lg-inline-block d-none">
+            <%= form_with url: '/', method: :get, local: true do |form| %>
+              <%= form.text_field :area, class: 'area-icon', placeholder: 'エリア' %>
+            <% end %>
+          </div>
+          <div class="header-search d-lg-inline-block d-none">
+            <%= form_with url: '/', method: :get, local: true do |form| %>
+              <%= form.text_field :keyword, placeholder: 'キーワード' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </header>
     <%= yield %>
+    <footer>
+      © 2020 POTEPAN.INC.
+    </footer>
   </body>
 </html>
