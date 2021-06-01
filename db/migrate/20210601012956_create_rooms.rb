@@ -4,7 +4,7 @@ class CreateRooms < ActiveRecord::Migration[6.1]
       t.string :name
       t.text :room_introduce
       t.integer :fee
-      t.tring :address
+      t.string :address
       t.string :room_img_url
       t.integer :register_user_id
 
