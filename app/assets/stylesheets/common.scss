@@ -17,6 +17,17 @@ img {
   height: 70px;
   padding: 4px 30px;
   background-color: #000000;
+  .header-left-nav {
+    float: left;
+  }
+  .header-right-nav {
+    float: right;
+  }
+  .nav-item {
+    display: inline-block;
+    color: #fff;
+    font-size: 14px;
+  }
 }
 
 .footer {
