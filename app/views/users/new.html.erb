@@ -2,7 +2,7 @@
   <div class="device-frame">
     <p class="my-4">新しいアカウントを作成</p>
     <div class="device-inner">
-      <%= form_with url: '/', method: :get, local: true do |form| %>
+      <%= form_with model: @user, method: :post, local: true do |form| %>
         <div class="field form-row">
           <div class="col-2 required-b pt-2">
           </div>
@@ -16,12 +16,12 @@
         <div class="field form-row">
           <div class="col-2 required-b pt-2">
           </div>
-          <%= form.text_field :password, class: 'form-control col-10 px-2', placeholder: 'パスワード' %>    
+          <%= form.text_field :password, type: 'password', class: 'form-control col-10 px-2', placeholder: 'パスワード' %>    
         </div>
         <div class="field form-row">
           <div class="col-2 required-b pt-2">
           </div>
-          <%= form.text_field :password_confirm, class: 'form-control col-10 px-2', placeholder: 'パスワード確認' %>    
+          <%= form.text_field :password_confirm, type: 'password', class: 'form-control col-10 px-2', placeholder: 'パスワード確認' %>    
         </div>
         <div class="action">
           <%= form.button '新しいアカウントを作成', type: 'button', class: 'form-control my-4 btn-primary', onclick: 'submit()' %>

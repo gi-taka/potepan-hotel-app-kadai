@@ -7,9 +7,16 @@ class UsersController < ApplicationController
   end
 
   def new
+    @user = User.new
   end
 
   def create
+    @user = User.new(params.require(:user).permit(:name, :mail, :password))
+    if @user.save
+      redirect_to '/'
+    else
+      render 'sing_up'
+    end
   end
 
   def edit
