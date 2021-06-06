@@ -24,7 +24,7 @@
           <%= form.text_field :password_confirm, class: 'form-control col-10 px-2', placeholder: 'パスワード確認' %>    
         </div>
         <div class="action">
-          <%= form.submit '新しいアカウントを作成', class: 'form-control my-4 btn-primary' %>
+          <%= form.button '新しいアカウントを作成', type: 'button', class: 'form-control my-4 btn-primary', onclick: 'submit()' %>
         </div>
       <% end %>
       <%= link_to 'すでにアカウントをお持ちの方はログイン', :users_sign_in %>

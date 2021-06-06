@@ -14,7 +14,7 @@
           <%= form.text_field :password, class: 'form-control col-10 px-2', placeholder: 'パスワード' %>    
         </div>
         <div class="action">
-          <%= form.submit 'ログイン', class: 'form-control my-4 btn-primary' %>
+          <%= form.submit 'ログイン', type: 'button', class: 'form-control my-4 btn-primary', onclick: 'submit()' %>
         </div>
       <% end %>
       <%= link_to '新しいアカウントを作成', :users_sign_up %>
