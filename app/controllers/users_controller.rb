@@ -11,11 +11,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params.require(:user).permit(:name, :mail, :password))
+    @user = User.new(params.require(:user).permit(:name, :mail, :password, :password_confirmation))
     if @user.save
       redirect_to '/'
     else
-      render 'sing_up'
+      render '/users/new'
     end
   end
 
