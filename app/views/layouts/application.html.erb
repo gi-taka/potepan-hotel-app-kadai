@@ -30,8 +30,13 @@
         </div>
         <div class="header-right-nav">
           <div class="nav-item">
-            <%= link_to 'ログイン', '/users/sign_in', class: 'btn btn-primary my-2 my-3' %>
-            <%= link_to '登録する', '/users/sign_up', class: 'btn btn-secondary my-2 my-3' %>
+            <% if session[:user_id] %>
+              <%= User.find(session[:user_id]).name %>
+              <%= link_to 'ログアウト', {controller: 'users', action: 'logout'}, method: :post, class: 'btn btn-primary my-2 my-3' %>
+            <% else %>
+              <%= link_to 'ログイン', '/users/sign_in', class: 'btn btn-primary my-2 my-3' %>
+              <%= link_to '登録する', '/users/sign_up', class: 'btn btn-secondary my-2 my-3' %>
+            <% end %>
           </div>
         </div>
       </div>

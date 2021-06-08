@@ -34,11 +34,17 @@ class UsersController < ApplicationController
   def login
     @user = User.find_by(mail: params[:mail], password_digest: params[:password])
     if @user
+      session[:user_id] = @user.id
       redirect_to '/'
     else
       @mail = params[:mail]
       @password = params[:password]
     end
+  end
+
+  def logout
+    session[:user_id] = false
+    redirect_to '/'
   end
 
 end
