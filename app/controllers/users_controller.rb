@@ -31,6 +31,14 @@ class UsersController < ApplicationController
   def sign_in
   end
 
-  def sign_up
+  def login
+    @user = User.find_by(mail: params[:mail], password_digest: params[:password])
+    if @user
+      redirect_to '/'
+    else
+      @mail = params[:mail]
+      @password = params[:password]
+    end
   end
+
 end
