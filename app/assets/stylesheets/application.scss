@@ -139,6 +139,12 @@ span {
     }
     .user-nav-mobile {
       height: auto;
+      .active {
+        border-bottom: 3px solid #4a90e2;
+      }
+      ul > li {
+        float: left;
+      }
     }
     .user-view {
       background-color: #f6f8f9;
