@@ -45,7 +45,7 @@
         </div>
         <div class="update-content">
           <div class="row">
-            <%= link_to '編集', '/users/edit', class: 'col-md-2 btn btn-primary mx-3' %>
+            <%= link_to '編集', "/users/#{session[:user_id]}/edit", class: 'col-md-2 btn btn-primary mx-3' %>
           </div>
         </div>
       </div>

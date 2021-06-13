@@ -20,6 +20,11 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if session[:user_id]
+      @user = User.find(session[:user_id])
+    else
+      redirect_to '/'
+    end
   end
 
   def update
