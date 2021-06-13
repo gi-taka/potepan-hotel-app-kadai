@@ -47,4 +47,20 @@ class UsersController < ApplicationController
     redirect_to '/'
   end
 
+  def account
+    if session[:user_id]
+      @user = User.find(session[:user_id])
+    else
+      redirect_to '/'
+    end
+  end
+
+  def profile
+    if session[:user_id]
+      @user = User.find(session[:user_id])
+    else
+      redirect_to '/'
+    end
+  end
+
 end

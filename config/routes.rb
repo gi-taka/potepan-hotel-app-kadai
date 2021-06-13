@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post 'users/login', to: 'users#login'
   post 'users/logout', to: 'users#logout'
   get 'users/account', to: 'users#account'
+  get 'users/profile', to: 'users#profile'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users
   resources :rooms
