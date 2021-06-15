@@ -1,8 +1,12 @@
 <div class="container device">
   <div class="device-frame">
     <h2 class="mb-3">アカウント編集</h2>
+    <div>
+    <%= flash[:notice] %>
+    <%= flash[:notice2] %>
+    </div>
     <div class="device-inner">
-      <%= form_with model: @user, class: 'edit_user', method: :post, local: true do |form| %>
+      <%= form_with model: @user, class: 'edit_user', method: :patch do |form| %>
       <div class="field">
         <div class="form-group">
           <label for="mail">メールアドレス</label>
