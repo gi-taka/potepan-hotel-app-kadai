@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params.require(:user).permit(:name, :mail, :password, :password_confirmation))
     if @user.save
+      session[:user_id] = @user.id
       redirect_to '/'
     else
       render '/users/new'
@@ -30,22 +31,23 @@ class UsersController < ApplicationController
   def update
     if session[:user_id]
       @user = User.find(session[:user_id])
-      if @user.password_digest == user_params[:password_digest]
+      if @user.authenticate(params[:user][:password_current])
         if user_params[:password].present? && user_params[:password_confirmation].present?
           if user_params[:password] == user_params[:password_confirmation]
-            if @user.update(user_params)
-              flash[:notice] = "#{user_params[:mail]}にメールアドレスを変更します"
-              flash[:notice2] = "#{user_params[:password]}/#{user_params[:password_confirmation]}にパスワードを変更します"
+            if @user.update_attribute(:password, params[:user][:password])
+              flash[:notice2] = "パスワードを変更しました"
             end
           else
-            flash[:notice] = "新しいパスワードが一致しません"
+            flash[:notice] = "新しいパスワードと確認用パスワードが一致しません"
           end
-        else
-          @user.update(user_params)
-          flash[:notice] = "#{user_params[:mail]}にメールアドレスを変更します"
+        end
+        if @user.mail != params[:user][:mail]
+          if @user.update_attribute(:mail, params[:user][:mail])
+            flash[:notice] = "メールアドレスを変更しました"
+          end
         end
       else
-        flash[:notice] = "#{user_params[:password_digest]}は現在のパスワードではありません"
+        flash[:notice] = "現在のパスワードが一致しません"
       end
       redirect_to "/users/#{session[:user_id]}/edit"
     else
@@ -93,7 +95,7 @@ class UsersController < ApplicationController
 
 private
   def user_params
-    params.require(:user).permit(:name, :mail, :password, :password_confirmation, :password_digest, :introduction)
+    params.require(:user).permit(:name, :mail, :password, :password_confirmation, :password_digest, :password_current, :introduction)
   end
 
 end
