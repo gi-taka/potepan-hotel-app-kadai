@@ -6,7 +6,7 @@
       <div><%= flash[:notice2] %></div>
     </div>
     <div class="device-inner">
-      <%= form_with model: @user, class: 'edit_user', method: :patch do |form| %>
+      <%= form_with model: @user, class: 'edit_user', method: :patch, local: true do |form| %>
       <div class="field">
         <div class="form-group">
           <label for="mail">メールアドレス</label>

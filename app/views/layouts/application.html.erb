@@ -32,7 +32,11 @@
           <div class="nav-item">
             <% if session[:user_id] %>
               <%= User.find(session[:user_id]).name %>
-              <img src="/assets/default_icon.jpeg" class="mx-3 p-1 host-icon nav-trigger">
+                <% if User.find(session[:user_id]).image.present? %>
+                  <img alt="アイコン画像" class="mx-3 p-1 host-icon nav-trigger" src="<%= User.find(session[:user_id]).image %>">
+                <% else %>
+                  <img alt="アイコン画像" class="mx-3 p-1 host-icon nav-trigger" src="/assets/default_icon.jpeg">
+                <% end %>
               <ul class="header-nav-menu" style="display: none;">
                 <li>
                   <%= link_to 'ルーム登録' %>

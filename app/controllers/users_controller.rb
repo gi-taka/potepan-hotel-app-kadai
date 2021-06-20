@@ -93,9 +93,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def profile_update
+    if session[:user_id]
+      @user = User.find(session[:user_id])
+      if params[:image].present?
+        @user.update_attribute(:image, params[:image])
+      end
+      @user.update_attribute(:name, params[:name])
+      @user.update_attribute(:introduction, params[:introduction])
+      redirect_to '/users/profile'
+    else
+      render '/'
+    end
+  end
+
 private
   def user_params
-    params.require(:user).permit(:name, :mail, :password, :password_confirmation, :password_digest, :password_current, :introduction)
+    params.require(:user).permit(:name, :mail, :password, :password_confirmation, :password_digest, :password_current, :introduction, :image)
   end
 
 end

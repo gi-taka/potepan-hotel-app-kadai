@@ -27,21 +27,25 @@
             <h5>プロフィール</h5>
           </div>
         </div>
-        <%= form_with url: 'user/edit', method: :post, local: true do |form| %>
+        <%= form_with url: "#{session[:user_id]}/profile_update", method: :patch, local: true do |form| %>
         <div class="update-content">
           <div class="row">
             <div class="col-md-6 offset-md-3">
               <div class="icon-box">
-                <img alt="アイコン画像" class="icon-image host-icon" src="/assets/default_icon.jpeg">
+                <% if @user.image.present? %>
+                  <img alt="アイコン画像" class="icon-image host-icon" src="<%= @user.image %>">
+                <% else %>
+                  <img alt="アイコン画像" class="icon-image host-icon" src="/assets/default_icon.jpeg">
+                <% end %>
               </div>
             </div>
           </div>
         </div>
         <div class="update-content">
           <div class="row">
-            <label class="col-md-3 required-a" for="image">アイコン画像</label>
+            <label class="col-md-3" for="image">アイコン画像</label>
             <div class="col-md-9">
-              <%= form.file_field :image, class: 'mb-4 col-md-9', placeholder: 'アイコン画像をアップロード', value: @image %>
+              <%= form.file_field :image, class: 'mb-4 col-md-9', placeholder: 'アイコン画像をアップロード', value: @user.image %>
             </div> 
           </div>
         </div>
@@ -49,21 +53,21 @@
           <div class="row">
             <label class="col-md-3 required-a" for="name">名前</label>
             <div class="col-md-9">
-              <%= form.text_field :name, class: 'form-control col-10 px-2', placeholder: '名前を入力', value: @name %>
+              <%= form.text_field :name, class: 'form-control col-10 px-2', placeholder: '名前を入力', value: @user.name %>
             </div> 
           </div>
         </div>
         <div class="update-content">
           <div class="row">
-            <label class="col-md-3 required-a" for="introduction">自己紹介</label>
+            <label class="col-md-3" for="introduction">自己紹介</label>
             <div class="col-md-9">
-              <%= form.text_area :introduction, rows: 5, class: 'form-control col-10 px-2', placeholder: '自己紹介文を入力', value: @introduction %>
+              <%= form.text_area :introduction, rows: 5, class: 'form-control col-10 px-2', placeholder: '自己紹介文を入力', value: @user.introduction %>
             </div> 
           </div>
         </div>
         <div class="update-content">
           <div class="row">
-            <%= link_to '更新', '/users/edit', class: 'col-md-2 btn btn-primary mx-3' %>
+            <%= form.button '更新', type: 'button', class: 'col-md-2 btn btn-primary mx-3', onclick: 'submit()' %>
           </div>
         </div>
         <% end %>
