@@ -1,19 +1,21 @@
 <div class="container-fiuld room">
-  <h4 class="pb-4">検索結果：件</h4>
+  <h4 class="pb-4">検索結果：<%= @rooms.count %>件</h4>
   <div class="row">
-    <div class="col-sm-6 col-lg-4 col-xl-3">
-      <div class="room-frame-inner">
-        <a href="/">
-          <div class="room-image-out">
-            <img  alt="部屋画像" class="room-image" src="/assets/room_default.png" />
-          </div>
-          <div class="room-profile">
-            <p class="room-profile-name">The Ritz Carlton Tokyo</p>
-            <p class="room-profile-city">東京都 港区</p>
-            <p class="room-profile-price price-icon">159800</p>
-          </div>
-        </a>
+    <% @rooms.each do |room| %>
+      <div class="col-sm-6 col-lg-4 col-xl-3">
+        <div class="room-frame-inner">
+          <%= link_to "/rooms/#{room.id}" do %>
+            <div class="room-image-out">
+              <img  alt="部屋画像" class="room-image" src="<%= room.image %>" />
+            </div>
+            <div class="room-profile">
+              <p class="room-profile-name"><%= room.name %></p>
+              <p class="room-profile-city"><%= room.room_introduction %></p>
+              <p class="room-profile-price price-icon"><%= room.fee %></p>
+            </div>
+          <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>

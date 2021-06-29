@@ -18,12 +18,12 @@
             <img src="/assets/logo.png">
           </a>
           <div class="header-search d-lg-inline-block d-none">
-            <%= form_with url: '/', method: :get, local: true do |form| %>
+            <%= form_with url: rooms_search_path, method: :get, local: true do |form| %>
               <%= form.text_field :area, class: 'form-control', placeholder: "\uf3c5 エリア" %>
             <% end %>
           </div>
           <div class="header-search d-lg-inline-block d-none">
-            <%= form_with url: '/', method: :get, local: true do |form| %>
+            <%= form_with url: rooms_search_path, method: :get, local: true do |form| %>
               <%= form.text_field :keyword, class: 'form-control', placeholder: "\uf002 キーワード" %>
             <% end %>
           </div>

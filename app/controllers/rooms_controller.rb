@@ -27,4 +27,12 @@ class RoomsController < ApplicationController
 
   def destroy
   end
+
+  def search
+    if params[:area]
+      @rooms = Room.where("address like ?", "%#{params[:area]}%")
+    elsif params[:keyword]
+      @rooms = Room.where("address like ? OR name like ? OR room_introduction like ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
+    end
+  end
 end
