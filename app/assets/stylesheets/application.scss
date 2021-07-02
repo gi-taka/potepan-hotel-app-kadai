@@ -271,3 +271,49 @@ span {
     border: 1px solid #eaedef;
   }
 }
+
+.reservations-new {
+  padding: 30px;
+  .reservations-new-nav {
+    padding: 20px;
+    border: 1px solid #eaedef;
+    .reservations-new-check-content {
+      border-bottom: 1px solid #eaedef;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+    }
+    .reservations-new-data-select {
+      padding: 15px 0;
+      > label {
+        letter-spacing: 2px;
+        font-size: 14px;
+      }
+    }
+  }
+  .room-show-detail {
+    display: flex;
+    align-items: center;
+    .room-show-detail-icon {
+      padding: 10px;
+      }
+    .room-show-profile {
+      padding: 15px;
+      .room-show-profile-name {
+        font-size: 18px;
+        font-weight: bold;
+        padding: 15px 0;
+      }
+      .room-show-profile-address {
+        font-size: 14px;
+      }
+    }
+  }
+  .room-show-detail-content {
+    font-size: 16px;
+    line-height: 30px;
+    padding: 30px 10px;
+    border-top: 1px solid #eaedef;
+    border-bottom: 1px solid #eaedef;
+    word-break: break-all;
+  }
+}

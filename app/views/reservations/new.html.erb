@@ -1,0 +1,25 @@
+<div class="container reservations-new">
+  <div class="row">
+    <div class="col-6 offset-3">
+      <div class="reservations-new-nav">
+        <h4 class="reservations-new-check-content">予約内容確認</h4>
+        <h5 class="price-icon"> <%= params[:fee] %>/ 日</h5>
+        <div class="reservations-new-date-select">
+          <%= form_with model: @reservation, class: 'new_reservation', mothod: :post, local: true do |form| %>
+            <label for="start_date">開始日</label>
+            <%= form.text_field :start_date, class: 'form-control mb-4', readonly: 'readonly', value: params[:start_date] %>
+            <label for="end_date">終了日</label>
+            <%= form.text_field :end_date, class: 'form-control mb-4', readonly: 'readonly', value: params[:end_date] %>
+            <h6 class="reservations-new-check-content">使用日数 : <%= (params[:end_date].to_date - params[:start_date].to_date).to_i %>日</h6>
+            <h6 class="reservations-new-check-content">人数 : <%= params[:person_num] %>人</h6>
+            <label for="total_amount">合計金額</label>
+            <%= form.text_field :total_amount, class: 'form-control mb-4', readonly: 'readonly', value: "#{params[:fee].to_i*params[:person_num].to_i*(params[:end_date].to_date - params[:start_date].to_date).to_i}" %>
+            <p class="reservations-new-check-content">上記内容でよろしければ「予約を確定」を押してください</p>
+            <%= form.button '予約を確定', type: 'button', class: 'btn btn-primary form-control my-3', onclick: 'submit()' %>
+            <%= link_to 'ルーム詳細に戻る', "/rooms/#{params[:room_id]}", class: 'btn btn-secondary form-control', onclick: 'submit()' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
