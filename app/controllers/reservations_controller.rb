@@ -3,6 +3,7 @@ class ReservationsController < ApplicationController
   end
 
   def show
+    @reservation = Reservation.find(params[:id])
   end
 
   def new
@@ -10,6 +11,10 @@ class ReservationsController < ApplicationController
   end
 
   def create
+    @reservation = Reservation.new(params.require(:reservation).permit(:user_id, :room_id, :start_date, :end_date, :person_num, :total_amount))
+    if @reservation.save
+      redirect_to "/reservations/#{@reservation.id}"
+    end
   end
 
   def edit

@@ -15,6 +15,9 @@
             <label for="total_amount">合計金額</label>
             <%= form.text_field :total_amount, class: 'form-control mb-4', readonly: 'readonly', value: "#{params[:fee].to_i*params[:person_num].to_i*(params[:end_date].to_date - params[:start_date].to_date).to_i}" %>
             <p class="reservations-new-check-content">上記内容でよろしければ「予約を確定」を押してください</p>
+            <%= form.text_field :user_id, class: 'form-control mb-4', type: 'hidden', value: params[:user_id] %>
+            <%= form.text_field :room_id, class: 'form-control mb-4', type: 'hidden', value: params[:room_id] %>
+            <%= form.text_field :person_num, class: 'form-control mb-4', type: 'hidden', value: params[:person_num] %>
             <%= form.button '予約を確定', type: 'button', class: 'btn btn-primary form-control my-3', onclick: 'submit()' %>
             <%= link_to 'ルーム詳細に戻る', "/rooms/#{params[:room_id]}", class: 'btn btn-secondary form-control', onclick: 'submit()' %>
           <% end %>
