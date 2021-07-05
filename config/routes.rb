@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   resources :rooms
   resources :reservations
   get '/', to: 'rooms#index'
+  get '/reservations', to: 'reservations#index'
 end
