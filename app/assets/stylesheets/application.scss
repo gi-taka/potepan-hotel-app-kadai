@@ -240,6 +240,10 @@ span {
 
 .room-show {
   padding: 30px;
+  .room-show-image {
+    width: 100%;
+    object-fit:cover;
+  }
   .room-show-detail {
     display: flex;
     align-items: center;
