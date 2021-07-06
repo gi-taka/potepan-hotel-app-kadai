@@ -11,8 +11,12 @@
     </tr>
   </thead>
     <tbody>
-      <% @rooms.each do |room| %>
+      <% @rooms.each_with_index do |room, line| %>
+      <% if line % 2 == 1 %>
+      <tr style="background-color: #f9fafb;">
+      <% else %>
       <tr>
+      <% end %>
         <td><%= link_to image_tag(room.image.url, class: 'room-posts-image'), "/rooms/#{room.id}" %></td>
         <td class="posts-name"><%= link_to room.name %></td>
         <td class="posts-content"><%= room.room_introduction %></td>
