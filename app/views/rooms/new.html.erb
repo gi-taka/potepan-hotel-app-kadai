@@ -62,6 +62,7 @@
             </div> 
           </div>
         </div>
+        <%= form.text_field :register_user_id, type: 'hidden', class: 'form-control col-10 px-2', value: session[:user_id] %>
         <div class="update-content">
           <div class="row">
             <%= form.button '更新', type: 'button', class: 'col-md-2 btn btn-primary mx-3', onclick: 'submit()' %>

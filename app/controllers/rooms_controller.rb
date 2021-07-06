@@ -11,7 +11,7 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.new(params.require(:room).permit(:name, :room_introduction, :fee, :address, :image))
+    @room = Room.new(params.require(:room).permit(:name, :room_introduction, :fee, :address, :image, :register_user_id))
     if @room.save
       redirect_to "/rooms/#{@room.id}"
     else
@@ -34,5 +34,9 @@ class RoomsController < ApplicationController
     elsif params[:keyword]
       @rooms = Room.where("address like ? OR name like ? OR room_introduction like ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
     end
+  end
+
+  def posts
+    @rooms = Room.where(register_user_id: session[:user_id])
   end
 end
