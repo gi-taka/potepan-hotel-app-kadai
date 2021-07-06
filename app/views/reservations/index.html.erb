@@ -20,7 +20,7 @@
 			    <tr>
         <% end %>
 				  <td><%= link_to image_tag(Room.find(reservation.room_id).image.url, class: 'reservations-image'), "/rooms/#{reservation.room_id}"%> </td>
-				  <td class="posts-name"><%= link_to Room.find(reservation.room_id).name %></td>
+				  <td class="posts-name"><%= link_to Room.find(reservation.room_id).name, "rooms/#{reservation.room_id}" %></td>
 				  <td class="posts-content"><%= Room.find(reservation.room_id).room_introduction %></td>
 				  <td class="price-icon"><%= reservation.total_amount %></td>
 				  <td><%= reservation.start_date %></td>
