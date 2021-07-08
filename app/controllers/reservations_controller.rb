@@ -8,7 +8,15 @@ class ReservationsController < ApplicationController
   end
 
   def new
-    @reservation = Reservation.new
+    if params[:start_date] != false && params[:end_date] != false
+      if params[:person_num].to_i > 0
+        @reservation = Reservation.new
+      else
+        redirect_to "/rooms/#{params[:room_id]}"
+      end
+    else
+      redirect_to "/rooms/#{params[:room_id]}"
+    end
   end
 
   def create

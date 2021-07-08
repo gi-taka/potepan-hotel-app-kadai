@@ -1,6 +1,7 @@
 <div class="container device">
   <div class="device-frame">
     <p class="my-4">新しいアカウントを作成</p>
+    <%= render('shared/error', obj:@user) %>
     <div class="device-inner">
       <%= form_with model: @user, method: :post, local: true do |form| %>
         <div class="field form-row">
