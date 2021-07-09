@@ -1,0 +1,76 @@
+<div class="container-field user">
+  <div class="row">
+    <div class="col-lg-2 user-nav user-nav-pc d-lg-block d-none">
+      <ul>
+        <li class="active">
+          <%= link_to '基本情報', '/rooms/new' %>
+        </li>
+      </ul>
+    </div>
+    <div class="col-lg-2 user-nav user-nav-mobile d-lg-none">
+      <ul>
+        <li class="active">
+          <%= link_to '基本情報', '/rooms/new' %>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-10 user-view">
+      <div class="user-view-box">
+        <div class="update-content">
+          <div class="row">
+            <h5>ルーム情報登録</h5>
+    　　　　　<%= render('shared/error', obj:@room) %>
+          </div>
+        </div>
+        <%= form_with model: @room, method: :post, local: true do |form| %>
+        <div class="update-content">
+          <div class="row">
+            <label class="col-md-3 required-a" for="name">ルーム名</label>
+            <div class="col-md-9">
+              <%= form.text_field :name, class: 'form-control col-10 px-2', placeholder: 'ルーム名を入力' %>
+            </div> 
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <label class="col-md-3" for="room_introduction">ルーム紹介</label>
+            <div class="col-md-9">
+              <%= form.text_area :room_introduction, rows: 5, class: 'form-control col-10 px-2', placeholder: 'ルーム説明を入力' %>
+            </div>
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <label class="col-md-3 required-a" for="fee">料金</label>
+            <div class="col-md-9">
+              <%= form.text_field :fee, class: 'form-control col-10 px-2', placeholder: '1日あたりの料金を入力する' %>
+            </div> 
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <label class="col-md-3 required-a" for="address">住所</label>
+            <div class="col-md-9">
+              <%= form.text_field :address, class: 'form-control col-10 px-2', placeholder: '住所を入力' %>
+            </div> 
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <label class="col-md-3 required-a" for="image">ルーム画像</label>
+            <div class="col-md-9">
+              <%= form.file_field :image, class: 'mb-4 col-md-9', placeholder: '部屋画像をアップロード' %>
+            </div> 
+          </div>
+        </div>
+        <%= form.text_field :register_user_id, type: 'hidden', class: 'form-control col-10 px-2', value: session[:user_id] %>
+        <div class="update-content">
+          <div class="row">
+            <%= form.button '更新', type: 'button', class: 'col-md-2 btn btn-primary mx-3', onclick: 'submit()' %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

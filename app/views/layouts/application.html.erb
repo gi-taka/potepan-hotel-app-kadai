@@ -2,15 +2,69 @@
 <html>
   <head>
     <title>HotelApp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'home/index' %>
   </head>
 
   <body>
+    <header class="header">
+      <div class="header-inner">
+        <div class="header-left-nav">
+          <a href="/">
+            <img src="/assets/logo.png">
+          </a>
+          <div class="header-search d-lg-inline-block d-none">
+            <%= form_with url: rooms_search_path, method: :get, local: true do |form| %>
+              <%= form.text_field :area, class: 'form-control', placeholder: "\uf3c5 エリア" %>
+            <% end %>
+          </div>
+          <div class="header-search d-lg-inline-block d-none">
+            <%= form_with url: rooms_search_path, method: :get, local: true do |form| %>
+              <%= form.text_field :keyword, class: 'form-control', placeholder: "\uf002 キーワード" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="header-right-nav">
+          <div class="nav-item">
+            <% if session[:user_id] %>
+              <%= User.find(session[:user_id]).name %>
+                <% if User.find(session[:user_id]).image.present? %>
+                  <img alt="アイコン画像" class="mx-3 p-1 host-icon nav-trigger" src="<%= User.find(session[:user_id]).image %>">
+                <% else %>
+                  <img alt="アイコン画像" class="mx-3 p-1 host-icon nav-trigger" src="/assets/default_icon.jpeg">
+                <% end %>
+              <ul class="header-nav-menu" style="display: none;">
+                <li>
+                  <%= link_to 'ルーム登録' , '/rooms/new'%>
+                </li>
+                <li>
+                  <%= link_to '予約済みルーム一覧', '/reservations' %>
+                </li>
+                <li>
+                  <%= link_to '登録済みルーム一覧', '/rooms/posts' %>
+                </li>
+                <li>
+                  <%= link_to '設定' , '/users/account' %>
+                </li>
+                <li>
+                  <%= link_to 'ログアウト', {controller: 'users', action: 'logout'}, method: :post %>
+                </li>
+              </ul>
+            <% else %>
+              <%= link_to 'ログイン', '/users/sign_in', class: 'btn btn-primary my-2 mx-3' %>
+              <%= link_to '登録する', '/users/sign_up', class: 'btn btn-secondary' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </header>
     <%= yield %>
+    <footer class="footer">
+      © 2020 POTEPAN.INC.
+    </footer>
   </body>
 </html>
